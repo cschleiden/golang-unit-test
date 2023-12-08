@@ -21,4 +21,5 @@ jobs:
         with:
           name: test-result
           path: ${{ github.workspace }}/report.xml
+        if: always()
 
