@@ -1,0 +1,23 @@
+name: tests
+
+on:
+    workflow_dispatch:
+    push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version: 1.21
+      - run: |
+           go test -timeout 120s -race -count 1 -v ./... 2>&1 | go-junit-report -set-exit-code -iocopy -out "${{ github.workspace }}/report.xml"
+      - name: upload result
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-result
+          path: ${{ github.workspace }}/report.xml
+
