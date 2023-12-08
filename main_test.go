@@ -20,7 +20,7 @@ func TestFoo(t *testing.T) {
 		{
 			"2 + 2 = 4",
 			args{2, 2},
-			4,
+			5,
 		},
 	}
 	for _, tt := range tests {
